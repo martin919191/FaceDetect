@@ -18,7 +18,7 @@ faces = faceCascade.detectMultiScale(
     scaleFactor=1.1,
     minNeighbors=5,
     minSize=(30, 30),
-    flags = cv2.cv.CV_HAAR_SCALE_IMAGE
+    flags = 1
 )
 
 print("Found {0} faces!".format(len(faces)))
@@ -26,6 +26,10 @@ print("Found {0} faces!".format(len(faces)))
 # Draw a rectangle around the faces
 for (x, y, w, h) in faces:
     cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
+    cropimg = image[y:y+h, x:x+w]
+    cv2.imshow("image", cropimg)
+    cv2.waitKey(0)
 
-cv2.imshow("Faces found", image)
-cv2.waitKey(0)
+#cv2.imshow("Faces found", image)
+
+#cv2.waitKey(0)
